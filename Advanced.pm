@@ -1,10 +1,6 @@
 package Text::Query::Advanced;
 
-BEGIN {
-  require 5.005;
-}
-
-$VERSION="0.03";
+$VERSION="0.04";
 
 use strict;
 
@@ -36,19 +32,19 @@ sub prepare {
 sub match {
   my $self=shift;
   my @ra;
-  return (shift || $_)=~$self->{matchexp} if @_<=1 && ref($_[0]) ne 'ARRAY';
+  return $self->{matchexp}->(shift || $_) if @_<=1 && ref($_[0]) ne 'ARRAY';
   my $pa=(@_==1 && ref($_[0]) eq 'ARRAY')?shift:\@_;
   if (ref($pa->[0]) eq 'ARRAY') {
-    @ra=grep {$_->[0]=~$self->{matchexp}} @$pa;
+    @ra=grep {$self->{matchexp}->($_[0])} @$pa;
   } else {
-    @ra=grep {$_=~$self->{matchexp}} @$pa;
+    @ra=grep {$self->{matchexp}->($_)} @$pa;
   }
   return wantarray?@ra:\@ra;
 }
 
 sub matchscalar {
   my $self=shift;
-  return (shift || $_)=~$self->{matchexp};
+  return $self->{matchexp}->(shift || $_);
 }
 
 #parsing routines
@@ -165,7 +161,7 @@ sub build_final_expression {
   my ($self,$t1)=@_;
   my $t;
   $t=($self->{parseopts}{-case})?'':'(?i)';
-  return qr/$t$t1/s;
+  return eval("sub {\$_[0]=~/$t$t1/s;}");
 }
 
 sub build_expression {
@@ -435,11 +431,6 @@ Generate code to match C<Q1> as a literal.
 
 =back
 
-=head1 RESTRICTIONS
-
-This module requires Perl 5.005 or higher due to the use of compiled
-regular expressions
-
 =head1 AUTHOR
 
 Eric Bohlman (ebohlman@netcom.com)
@@ -451,7 +442,7 @@ Text::Parsewords.
 
 =head1 COPYRIGHT
 
-Copyright (c) 1998 Eric Bohlman. All rights reserved.
+Copyright (c) 1998-1999 Eric Bohlman. All rights reserved.
 This program is free software; you can redistribute and/or modify
 it under the same terms as Perl itself.
 =cut

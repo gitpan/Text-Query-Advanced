@@ -6,4 +6,6 @@ Revision history for Perl extension Text::Query::Advanced.
 	- enabled subclassing of query compiler
 0.03  Thu Dec 31 18:00:00 1998
         - clarified Perl version requirements in documentation
+0.04  Thu May 13 02:20:00 1999
+	- eliminated use of qr//, allowing use with pre-5.005 Perl
 
