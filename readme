@@ -70,4 +70,6 @@ VERSION HISTORY
         	- clarified Perl version requirements in documentation
 	0.04  Thu May 13 02:20:00 1999
 		- eliminated use of qr//, allowing use with pre-5.005 Perl
+        0.05  Fri May 21 06:00:00 1999
+                - removed test for 5.005 from makefile.pl
 
