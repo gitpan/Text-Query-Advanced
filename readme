@@ -49,14 +49,18 @@ INSTALLATION
     This module is pure Perl, so it can be simply copied into the 
     appropriate directory.
 
+RESTRICTIONS
+    This module requires Perl 5.005 or higher
+
 AUTHOR
     Eric Bohlman (ebohlman@netcom.com)
 
+CREDITS
     The parse_tokens routine was adapted from the parse_line routine
     in Text::Parsewords.
 
 COPYRIGHT
     Copyright (c) 1998 Eric Bohlman. All rights reserved. This
-    program is free software; you can redistribute it and/or modify
-    it under the same terms as Perl itself. =cut
+    program is free software; you can redistribute and/or modify
+    it under the same terms as Perl itself.
 
