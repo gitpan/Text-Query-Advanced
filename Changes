@@ -1,0 +1,7 @@
+Revision history for Perl extension Text::Query::Advanced.
+
+0.01  Mon Nov 16 22:52:58 1998
+	- original version; created by h2xs 1.18
+0.02  Mon Dec 28 03:51:00 1998
+	- enabled subclassing of query compiler
+
